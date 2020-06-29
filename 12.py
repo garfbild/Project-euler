@@ -1,15 +1,19 @@
-def Factors(n):
-    factors = 0
-    for i in range(1,int(n/2 + 1)):
-        if n/i == int(n/i):
-            factors+=1
-    return factors
+def tN(n):
+    return int(n*(n+1)/2)
 
-trinumber = 0
-n = 0
-numberFactors = 0
-while numberFactors <500:
-    n+=1
-    trinumber = trinumber + n
-    numberFactors = Factors(trinumber)
-print(trinumber)
+def Factors(n):
+    f = 0
+    for i in range(1,int(n**0.5)+1):
+        if n%i == 0:
+            f+=1
+    return f*2
+
+j = 0
+numFactors = 0
+while numFactors < 500:
+    j+=1
+    t = tN(j)
+    numFactors = Factors(t)
+    if numFactors%100 == 0:
+        print(j,numFactors)
+print(j)
