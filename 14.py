@@ -22,3 +22,4 @@ for i in range(1,1000000):
     if n > max:
         max = n
         print(i,max)
+print(dict["13"])
