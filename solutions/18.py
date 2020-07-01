@@ -16,5 +16,7 @@ triangle = '''75
 layers = triangle.split('\n')
 for layer in layers:
     layer.split(" ")
+
 print(layers)
-print(len(layers))
+for i in range(len(layers)):
+    print(layers[i])
