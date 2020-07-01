@@ -14,9 +14,14 @@ triangle = '''75
 63 66 04 68 89 53 67 30 73 16 69 87 40 31
 04 62 98 27 23 09 70 98 73 93 38 53 60 04 23'''
 layers = triangle.split('\n')
-for layer in layers:
-    layer.split(" ")
+for i in range(len(layers)):
+    layers[i] = layers[i].split(" ")
+
+for i in range(len(layers)-2,-1,-1):
+    for j in range(len(layers[i])):
+        if int(layers[i+1][j]) > int(layers[i+1][j+1]):
+            layers[i][j] = int(layers[i][j])+int(layers[i+1][j])
+        else:
+            layers[i][j] = int(layers[i][j])+int(layers[i+1][j+1])
 
 print(layers)
-for i in range(len(layers)):
-    print(layers[i])
