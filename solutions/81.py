@@ -19,7 +19,6 @@ for x in range(n):
         temp.append(int(strmatrix[x][y]))
     matrix.append(temp)
 
-
 for j in range(n-1,0,-1):
     matrix[n-1][j-1] += matrix[n-1][j]
     matrix[j-1][n-1] += matrix[j][n-1]
