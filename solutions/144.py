@@ -10,5 +10,6 @@ inverse = -1/wallgradient
 dy = (1/(inverse**2 + 1))**0.5
 dx = 1-dy**2
 normal = [dx,dy]
-reflection = laserdir - 2*dotProduct(laserdir,normal)*normal
+reflection = [laserdir[0] - 2*dotProduct(laserdir,normal)*normal[0],laserdir[1] - 2*dotProduct(laserdir,normal)*normal[1]]
 print(reflection)
+print(reflection[1]/reflection[0])
