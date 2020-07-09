@@ -1,17 +1,15 @@
-def dotProduct(a,b):
-    return a[0]*b[0] + a[1]*b[1]
+import numpy as np
+from numpy import linalg as LA
 
-laserstart = [0.0,10.1]
-impact = [1.4,-9.6]
-laserdir = [impact[0]-laserstart[0],impact[1]-laserstart[1]]
-print(laserdir)
+laserstart = np.array([0.0,10.1])
+impact = np.array([1.4,-9.6])
+laserdir = impact - laserstart
 wallgradient = -4*impact[0]/impact[1]
-print(wallgradient)
-inverse = -1/wallgradient
+wallVect = np.array([1,wallgradient])
 
 #compute normal
-normal = [-1,-inverse]
-print(normal)
-reflection = [laserdir[0] - 2*dotProduct(laserdir,normal)*normal[0],laserdir[1] - 2*dotProduct(laserdir,normal)*normal[1]]
+rotationMat = np.array([[0,-1],[1,0]])
+normal = np.matmul(rotationMat, wallVect)
+normNormal = normal / LA.norm(normal)
+reflection = laserdir - 2*np.dot(laserdir,normNormal)*normNormal
 print(reflection)
-print(reflection[1]/reflection[0])
