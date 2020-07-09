@@ -10,7 +10,7 @@ print(wallgradient)
 inverse = -1/wallgradient
 
 #compute normal
-normal = [1,inverse]
+normal = [-1,-inverse]
 print(normal)
 reflection = [laserdir[0] - 2*dotProduct(laserdir,normal)*normal[0],laserdir[1] - 2*dotProduct(laserdir,normal)*normal[1]]
 print(reflection)
