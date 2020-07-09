@@ -6,10 +6,10 @@ impact = [1.4,-9.6]
 laserdir = [impact[1]-laserstart[1],impact[0]-laserstart[0]]
 wallgradient = -4*impact[0]/impact[1]
 inverse = -1/wallgradient
+print(inverse)
 #compute normal
-dy = (1/(inverse**2 + 1))**0.5
-dx = 1-dy**2
-normal = [dx,dy]
+
+normal = [1,inverse]
 reflection = [laserdir[0] - 2*dotProduct(laserdir,normal)*normal[0],laserdir[1] - 2*dotProduct(laserdir,normal)*normal[1]]
 print(reflection)
 print(reflection[1]/reflection[0])
