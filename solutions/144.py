@@ -25,6 +25,6 @@ c = impact[1] - m * impact[0]
 #y = mx + c substitute into x**2 + 4*Y**2
 a1 = 4*m**2 + 1
 a2 = 8*c*m
-a3 = 4*c**3 - 100
+a3 = 4*c**2 - 100
 print(a1,a2,a3)
 print(np.roots([a1,a2,a3]))
