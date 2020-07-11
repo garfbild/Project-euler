@@ -19,5 +19,12 @@ reflection = laserdir - 2*np.dot(laserdir,normNormal)*normNormal
 print(reflection)
 
 #intersection
-c = impact[1] - reflection[1]/reflection[0] * impact[0]
-print(c)
+m = reflection[1]/reflection[0]
+c = impact[1] - m * impact[0]
+
+#y = mx + c substitute into x**2 + 4*Y**2
+a1 = 4*m**2 + 1
+a2 = 8*c*m
+a3 = 4*c**3 - 100
+print(a1,a2,a3)
+print(np.roots([a1,a2,a3]))
