@@ -5,9 +5,10 @@ from numpy import linalg as LA
 laseremit = np.array([0.0,10.1])
 laserimpact = np.array([1.4,-9.6])
 
-for i in range(3):
+i = 0
+bol = True
+while bol:
     laserdir = laserimpact - laseremit
-    print(laseremit,laserimpact)
     #create tangent vector
     wallgradient = -4*laserimpact[0]/laserimpact[1]
     wallVect = np.array([1,wallgradient])
@@ -34,8 +35,16 @@ for i in range(3):
         x = roots[1]
     else:
         x = roots[0]
+    Lambda = (x - laserimpact[0])/reflection[0]
+    y = reflection[1]*Lambda + laserimpact[1]
 
-    y = (100 - 4*x**2)**0.5
 
     laseremit = laserimpact
     laserimpact = np.array([x,y])
+
+    if laserimpact[0] >= -0.01 and laserimpact[0] <= 0.01 and laserimpact[1] > 0:
+        bol = False
+    else:
+        i += 1
+
+print(i)
