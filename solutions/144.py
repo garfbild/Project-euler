@@ -36,6 +36,7 @@ while bol:
     a3 = (c**2) - 100
     roots = np.roots([a1,a2,a3])
 
+    #find the root that is not
     if abs(Decimal(roots[0])-laserimpact[0]) < 0.01:
         x = Decimal(roots[1])
     else:
