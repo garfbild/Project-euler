@@ -39,9 +39,7 @@ for e in range(1,phi-1,2):
         m = 0
         t = time.time()
         while s <= min and m <= n-1:
-            tt = time.time()
             c = m**e % n
-            print(time.time()-tt)
             if c == m:
                 s+=1
             m+=1
