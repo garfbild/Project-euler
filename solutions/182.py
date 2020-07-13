@@ -33,9 +33,8 @@ phi = (p-1)*(q-1)
 
 saved = []
 min = 99999
-for e in range(1,phi-1):
+for e in range(1,phi-1,2):
     if GCD(e,phi) == 1:
-        print("e:",e)
         s = 0
         m = 0
         t = time.time()
@@ -44,8 +43,7 @@ for e in range(1,phi-1):
             if c == m:
                 s+=1
             m+=1
-        print("time",time.time() - t)
+        print(e,time.time()-t)
         if s < min:
             min = s
-            print("min",min)
         saved.append([e,s])
