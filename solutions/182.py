@@ -39,11 +39,13 @@ for e in range(1,phi-1,2):
         m = 0
         t = time.time()
         while s <= min and m <= n-1:
+            tt = time.time()
             c = m**e % n
+            print(time.time()-tt)
             if c == m:
                 s+=1
             m+=1
-        print(e,time.time()-t)
+        print(e,"while loop time",time.time()-t)
         if s < min:
             min = s
         saved.append([e,s])
