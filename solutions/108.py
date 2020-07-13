@@ -30,8 +30,24 @@ def primeFactors(n):
             temp = temp / p
     return dict
 
-n = 4
-total = 0
-for i in primeFactors(n).values():
-    total += (2*i) + 1
-print(total)
+def intelligent(n):
+    total = 0
+    for i in primeFactors(n).values():
+        total += (2*i) + 1
+    print(total/2)
+
+def dumb(n):
+    total = 0
+    for a in range(1,2*n + 1):
+        for b in range(2*n,(n+1)*10):
+            if 1/a + 1/b == 1/n:
+                total += 1
+    return total
+
+n = 1
+while dumb(n) < 1000:
+    if n % 10 == 0:
+        print(n)
+    n += 1
+
+print(n)
