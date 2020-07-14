@@ -70,22 +70,22 @@ def lessdumb():
 
 #while 2 m**2 + 2m*n < 10**8
 t = time.time()
-for n in range(1,10**8):
-    #if m is odd then n must be even
+s = 0
+for n in range(1,5000):
+    #if n is odd then m must be even
     if n%2 == 1:
         const = 2
     else:
         const = 1
     m = n+1
-    while 2*m**2 + 2*m*n < 10**8:
-        if GCD(m,n) == 1:
-            a = m**2 - n**2
-            b = 2*m*n
-            c = m**2 + n**2
-            #print(a,b,c)
-
-
-
+    while 2*m**2 + 2*m*n <= 10**8:
+        if m%2 != 1 or n%2 != 1:
+            if GCD(m,n) == 1:
+                a = m**2 - n**2
+                b = 2*m*n
+                c = m**2 + n**2
+                s += 1
         m+=const
 
 print(time.time()-t)
+print(s)
