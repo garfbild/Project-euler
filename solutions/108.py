@@ -1,5 +1,6 @@
 #1/x + 1/y = 1/n
 #x+y * n = xy
+#not finished
 from decimal import *
 from time import *
 
@@ -43,6 +44,7 @@ def dumb(n):
             if 1/a + 1/b == 1/n:
                 total += 1
     return total
+
 for n in range(1,10):
     print(intelligent(n),dumb(n))
     print()
