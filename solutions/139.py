@@ -24,7 +24,6 @@ def GCD(a,b):
         temp = a
         a = b
         b = temp
-
     if a%b == 0:
         return b
 
