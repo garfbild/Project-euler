@@ -8,7 +8,7 @@ def Sieve(n):
     for d in range(2,int(n**0.5)+1):
         if sieve[d] == 0:
             s = d
-            while s + d <= n+1:
+            while s + d <= n:
                 s += d
                 sieve[s] = 1
 
@@ -31,23 +31,18 @@ def primeFactors(n):
     return dict
 
 def intelligent(n):
-    total = 0
+    product = 1
     for i in primeFactors(n).values():
-        total += (2*i) + 1
-    print(total/2)
+        product = product * (2*i + 1)
+    return product
 
 def dumb(n):
     total = 0
-    for a in range(1,2*n + 1):
-        for b in range(2*n,(n+1)*10):
+    for a in range(1,20*n):
+        for b in range(1,n*20):
             if 1/a + 1/b == 1/n:
                 total += 1
     return total
-
-n = 1
-while dumb(n) < 1000:
-    if n % 10 == 0:
-        print(n)
-    n += 1
-
-print(n)
+for n in range(1,10):
+    print(intelligent(n),dumb(n))
+    print()
