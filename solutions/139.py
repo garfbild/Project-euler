@@ -83,8 +83,9 @@ for n in range(1,5000):
                 a = m**2 - n**2
                 b = 2*m*n
                 c = m**2 + n**2
-                if c%(abs(a - b)) == 0:
-                    s += 1
+                if c%abs(a-b) == 0:
+                    s+= int((10**8)/(a+b+c))
+                    print(a,b,c)
         m+=const
 
 print(time.time()-t)
