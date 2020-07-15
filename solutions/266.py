@@ -14,6 +14,19 @@ def Sieve(n):
     return primes[2:]
 
 s = 1
-for p in Sieve(190):
+primes = Sieve(190)
+for p in primes:
     s = s*p
-print(s**0.5)
+
+print(len(primes))
+print(s)
+SR = s**0.5
+print(SR)
+
+t = 1
+i = 0
+while t*primes[i] < SR:
+    t = t*primes[i]
+    i += 1
+print(t)
+print(SR-t)
