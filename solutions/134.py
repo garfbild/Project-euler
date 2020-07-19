@@ -1,4 +1,3 @@
-#not finised
 import copy
 def Sieve(n):
     sieve = [0] * (n+1)
@@ -42,6 +41,7 @@ for x in range(2,len(primes)-1):
     power = len(str(p1))
     r,s,t = extEuclid(p2,10**power)
     if s*10**power + t*p2 == 1:
+        #chinese remainder
         S += p1*t*p2 %(p2*(10**power))
     else:
         S += p1*s*p2 %(p2*(10**power))
