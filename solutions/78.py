@@ -25,7 +25,7 @@ while bol == False:
         if counter == 4:
             counter = 0
 
-    if n % 1000000 == 0:
+    if p[-1] % 1000000 == 0:
         print(n)
         bol = True
     else:
