@@ -9,8 +9,9 @@ for i in range(9):
     new_row = []
     for j in range(9):
         new_row.append(int(old_row[j]))
+    print(new_row)
     new_sudoku.append(new_row)
-
+print()
 potentials = []
 for p in range(9):
     row = []
@@ -18,10 +19,9 @@ for p in range(9):
         row.append([])
     potentials.append(row)
 
-for y in range(2):
-    for x in range(2):
+for y in range(9):
+    for x in range(9):
         for n in range(9):
-            print(new_sudoku[y][n],new_sudoku[n][x])
             if new_sudoku[y][n] != 0 and new_sudoku[y][n] not in potentials[y][x]:
                 potentials[y][x].append(new_sudoku[y][n])
             if new_sudoku[n][x] != 0 and new_sudoku[n][x] not in potentials[y][x]:
@@ -31,5 +31,8 @@ for y in range(2):
             if m not in potentials[y][x]:
                 temp.append(m)
         potentials[y][x] = temp
-        print(temp)
-        print()
+        if len(temp) == 1:
+            print(temp,x,y)
+
+for row in potentials:
+    print(row)
