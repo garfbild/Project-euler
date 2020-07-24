@@ -26,13 +26,14 @@ for y in range(9):
                 potentials[y][x].append(new_sudoku[y][n])
             if new_sudoku[n][x] != 0 and new_sudoku[n][x] not in potentials[y][x]:
                 potentials[y][x].append(new_sudoku[n][x])
-        temp = []
-        for m in range(1,9):
-            if m not in potentials[y][x]:
-                temp.append(m)
-        potentials[y][x] = temp
-        if len(temp) == 1:
-            print(temp,x,y)
+        if new_sudoku[y][x] == 0:
+            temp = []
+            for m in range(1,10):
+                if m not in potentials[y][x]:
+                    temp.append(m)
+            potentials[y][x] = temp
+            if len(temp) == 1:
+                print(temp,y,x)
 
 for row in potentials:
     print(row)
