@@ -14,7 +14,7 @@ for i in range(9):
             empty_cells += 1
     new_sudoku.append(new_row)
 
-for k in range(15):
+while empty_cells > 0:
     [print(row) for row in new_sudoku]
     print(empty_cells)
     print()
@@ -38,6 +38,8 @@ for k in range(15):
                     empty_cells += -1
                     print(x+1,y+1)
                     x,y = 9,9
-            x+=1
-        y+=1
+                if len(temp) == 2:
+                    print("two",x+1,y+1,temp)
+            x += 1
+        y += 1
 print(new_sudoku)
