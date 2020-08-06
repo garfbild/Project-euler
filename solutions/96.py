@@ -11,8 +11,10 @@ def CountEmptyCells(Sudoku):
 def depthFirstSearch(Sudoku,y,x):
     [print(row) for row in new_sudoku]
     print()
+    
     if CountEmptyCells(Sudoku) == 0:
-        return
+        return Sudoku
+
     nextx = x+1 % 8
     nexty = y+1
     if nexty == 9:
