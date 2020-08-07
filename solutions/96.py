@@ -57,19 +57,17 @@ def depthFirstSearch(Sudoku,y,x):
 file = open("solutions/sudoku.txt","r")
 List = file.read().split('\n')
 
-g = 0
-oldSudoku = List[10*g + 1:10*(g+1)]
-newSudoku = []
-for i in range(9):
-    oldRow = list(oldSudoku[i])
-    newRow = []
-    for j in range(9):
-        newRow.append(int(oldRow[j]))
-    newSudoku.append(newRow)
+S = 0
+for g in range(50):
+    oldSudoku = List[10*g + 1:10*(g+1)]
+    newSudoku = []
+    for i in range(9):
+        oldRow = list(oldSudoku[i])
+        newRow = []
+        for j in range(9):
+            newRow.append(int(oldRow[j]))
+        newSudoku.append(newRow)
+    SolvedSudoku = depthFirstSearch(newSudoku,0,0)
+    S += SolvedSudoku[0][0]*100 + SolvedSudoku[0][1]*10 + SolvedSudoku[0][2]
 
-smallSudoku = [[3,0,2,0],[0,0,0,0],[0,0,0,0],[0,1,0,4]]
-
-[print(row) for row in newSudoku]
-print()
-
-print(depthFirstSearch(newSudoku,0,0))
+print(S)
