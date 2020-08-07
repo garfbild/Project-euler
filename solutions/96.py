@@ -57,4 +57,3 @@ for i in range(9):
 
 [print(row) for row in newSudoku]
 print()
-depthFirstSearch(newSudoku,0,0)
