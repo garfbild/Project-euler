@@ -9,13 +9,11 @@ def CountEmptyCells(Sudoku):
     return emptyCells
 
 def depthFirstSearch(Sudoku,y,x):
-    print(CountEmptyCells(Sudoku))
     nextx = (x+1)%len(Sudoku)
     nexty = y
     if nextx == 0:
         nexty += 1
     if nexty == len(Sudoku):
-        print(Sudoku)
         return Sudoku
 
     SudokuCopy = copy.deepcopy(Sudoku)
@@ -33,15 +31,16 @@ def depthFirstSearch(Sudoku,y,x):
                 potentials.append(t)
         if len(potentials) == 0:
             return Sudoku
-        SudokuCopy = copy.deepcopy(Sudoku)
+
         for p in potentials:
-            SudokuCopy[y][x] = p
-            Sudoku = depthFirstSearch(SudokuCopy,nexty,nextx)
-            if CountEmptyCells(Sudoku) == 0:
-                return Sudoku
+            Sudoku[y][x] = p
+            tempSudoku = depthFirstSearch(Sudoku,nexty,nextx)
+            if CountEmptyCells(tempSudoku) == 0:
+                return tempSudoku
+            Sudoku[y][x] = 0
     else:
          return depthFirstSearch(Sudoku,nexty,nextx)
-    return SudokuCopy
+    return Sudoku
 
 
 file = open("solutions/sudoku.txt","r")
