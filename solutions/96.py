@@ -14,6 +14,7 @@ def depthFirstSearch(Sudoku,y,x):
     if nextx == 0:
         nexty += 1
     if nexty == 9:
+        print(Sudoku)
         return
 
     SudokuCopy = copy.deepcopy(Sudoku)
@@ -26,11 +27,9 @@ def depthFirstSearch(Sudoku,y,x):
             if Sudoku[n][x] != 0 and Sudoku[n][x] not in neighbours:
                 neighbours.append(Sudoku[n][x])
         potentials = []
-        for t in range(1,9):
+        for t in range(1,10):
             if t not in neighbours:
                 potentials.append(t)
-        print(y,x,potentials)
-        print()
         if len(potentials) == 0:
             return
         SudokuCopy = copy.deepcopy(Sudoku)
@@ -38,9 +37,8 @@ def depthFirstSearch(Sudoku,y,x):
             SudokuCopy[y][x] = p
             depthFirstSearch(SudokuCopy,nexty,nextx)
     else:
-        print(y,x,"static")
-        print()
-        depthFirstSearch(Sudoku,nexty,nextx)
+         depthFirstSearch(Sudoku,nexty,nextx)
+    return
 
 
 file = open("solutions/sudoku.txt","r")
