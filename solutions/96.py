@@ -2,43 +2,46 @@ import copy
 
 def CountEmptyCells(Sudoku):
     emptyCells = 0
-    for i in range(9):
-        for j in range(9):
+    for i in range(len(Sudoku)):
+        for j in range(len(Sudoku)):
             if Sudoku[i][j] == 0:
                 emptyCells += 1
     return emptyCells
 
 def depthFirstSearch(Sudoku,y,x):
-    nextx = (x+1)%9
+    print(CountEmptyCells(Sudoku))
+    nextx = (x+1)%len(Sudoku)
     nexty = y
     if nextx == 0:
         nexty += 1
-    if nexty == 9:
+    if nexty == len(Sudoku):
         print(Sudoku)
-        return
+        return Sudoku
 
     SudokuCopy = copy.deepcopy(Sudoku)
 
     if Sudoku[y][x] == 0:
         neighbours = []
-        for n in range(9):
+        for n in range(len(Sudoku)):
             if Sudoku[y][n] != 0 and Sudoku[y][n] not in neighbours:
                 neighbours.append(Sudoku[y][n])
             if Sudoku[n][x] != 0 and Sudoku[n][x] not in neighbours:
                 neighbours.append(Sudoku[n][x])
         potentials = []
-        for t in range(1,10):
+        for t in range(1,len(Sudoku)+1):
             if t not in neighbours:
                 potentials.append(t)
         if len(potentials) == 0:
-            return
+            return Sudoku
         SudokuCopy = copy.deepcopy(Sudoku)
         for p in potentials:
             SudokuCopy[y][x] = p
-            depthFirstSearch(SudokuCopy,nexty,nextx)
+            Sudoku = depthFirstSearch(SudokuCopy,nexty,nextx)
+            if CountEmptyCells(Sudoku) == 0:
+                return Sudoku
     else:
-         depthFirstSearch(Sudoku,nexty,nextx)
-    return
+         return depthFirstSearch(Sudoku,nexty,nextx)
+    return SudokuCopy
 
 
 file = open("solutions/sudoku.txt","r")
@@ -54,7 +57,8 @@ for i in range(9):
         newRow.append(int(oldRow[j]))
     newSudoku.append(newRow)
 
+smallSudoku = [[3,0,2,0],[0,0,0,0],[0,0,0,0],[0,1,0,4]]
 
 [print(row) for row in newSudoku]
 print()
-depthFirstSearch(newSudoku,0,0)
+print(depthFirstSearch(smallSudoku,0,0))
