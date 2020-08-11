@@ -26,6 +26,7 @@ def primeFactors(n):
             temp = temp / p
     return dict
 
+min = 10000000
 for m in range(6,100000000):
     primeFactorsList = list(primeFactors(m).items())
     FactorsList = []
@@ -52,5 +53,7 @@ for m in range(6,100000000):
             for x in range(1,width+1):
                 for y in range(1,height+1):
                     s += (width-x+1)*(height-y+1)
-            if s >= 2000000:
-                print(width,s,height,width*height)
+            if abs(s-2000000) < min:
+                min = abs(s-2000000)
+                print(m,s,min,width,height,width*height)
+            
