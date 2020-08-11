@@ -24,17 +24,20 @@ def primeFactors(n):
             temp = temp / p
     return dict
 
-for m in range(2,10):
+for m in range(2,20):
     primeFactorsList = list(primeFactors(m).items())
-    s = 0
+    FactorsList = []
     for i in range(len(primeFactorsList)):
-        s += primeFactorsList[i][1]
-    print(m,s)
+        if primeFactorsList[i][1] != 0:
+            FactorsList = FactorsList + [primeFactorsList[i][0]]*primeFactorsList[i][1]
 
-width = 4
-height = 1
-s = 0
-for x in range(1,width+1):
-    for y in range(1,height+1):
-        s += (width-x+1)*(height-y+1)
-print(s)
+    for n in range(1,2**len(FactorsList)-1):
+        heightFactors = []
+        widthFactors = []
+        for digit in str(bin(n))[2:].zfill(len(FactorsList)):
+            if digit == "0":
+                heightFactors.append(digit)
+            else:
+                widthFactors.append(digit)
+
+    print()
