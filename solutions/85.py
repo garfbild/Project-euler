@@ -26,7 +26,7 @@ def primeFactors(n):
             temp = temp / p
     return dict
 
-for m in range(6,7):
+for m in range(6,100000000):
     primeFactorsList = list(primeFactors(m).items())
     FactorsList = []
     for i in range(len(primeFactorsList)):
@@ -45,4 +45,12 @@ for m in range(6,7):
                 widthFactors.append(FactorsList[p])
         if np.prod(widthFactors) >= np.prod(heightFactors) and [widthFactors,heightFactors] not in savedPartitions:
             savedPartitions.append([widthFactors,heightFactors])
-            print(m,widthFactors,heightFactors)
+            width = np.prod(widthFactors)
+            height = np.prod(heightFactors)
+
+            s = 0
+            for x in range(1,width+1):
+                for y in range(1,height+1):
+                    s += (width-x+1)*(height-y+1)
+            if s >= 2000000:
+                print(width,s,height,width*height)
