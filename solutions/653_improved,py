@@ -43,6 +43,11 @@ L = float(100000) #length of tube millimeters of course
 N = 101 #number of balls
 j = 51 #ball we want to track
 
+# L = float(1000000000)
+# N = 1000001
+# j = 500001
+#minimumPotentialDistance is always 0.5
+
 trackedDistance = 0
 
 randomList = random(N)
@@ -71,13 +76,16 @@ while ballsPosition[j-1] < L:
         ballsDirection = ballsDirection[:-1]
         potentialDistancesList = potentialDistancesList[:-1]
         N += -1
-    elif ballsDirection[-1] == "e" and N != j:
+    elif ballsDirection[-1] == "e" and N != j: # if the easternly most ball is heading east we delete it
         ballsPosition = ballsPosition[:-1]
         ballsDirection = ballsDirection[:-1]
         potentialDistancesList = potentialDistancesList[:-1]
         N += -1
+    elif ballsDirection[-1] == "e" and N == j: # if the eastern most ball is the ball we are tracking we know it will end by covering the remaining distance and so we break
+        trackedDistance += L - ballsPosition[-1]
+        break
 
-    minimumPotentialDistance = min(potentialDistancesList)
+    minimumPotentialDistance = min(potentialDistancesList) # the most amount of distance all balls can travel without missing any collisions
     trackedDistance += minimumPotentialDistance
     for m in range(N):
         if ballsDirection[m] == "e":
@@ -85,12 +93,12 @@ while ballsPosition[j-1] < L:
         else:
             ballsPosition[m] += -minimumPotentialDistance
 
-        if potentialDistancesList[m] == minimumPotentialDistance:
+        if potentialDistancesList[m] == minimumPotentialDistance: # bouncing routine
             ballsDirection[m] = swap(ballsDirection[m])
 
         potentialDistancesList[m] += -minimumPotentialDistance
 
-    for k in range(N):
+    for k in range(N): # if the ball just bounced and has no potentialDistance we must recaluate it for the ball and its neighbour potentially
         if potentialDistancesList[k] == float(0):
             ballsPosition,ballsDirection,potentialDistance = calculatePotentialDistance(ballsPosition,ballsDirection,k)
             potentialDistancesList[k] = potentialDistance
