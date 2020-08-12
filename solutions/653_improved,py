@@ -61,7 +61,7 @@ for d in range(N):
         ballsDirection.append("w") # 0 is west
 
 potentialDistancesList = []
-for e in range(len(ballsDirection)):
+for e in range(N):
     ballsPosition,ballsDirection,potentialDistance = calculatePotentialDistance(ballsPosition,ballsDirection,e)
     potentialDistancesList.append(potentialDistance)
 
@@ -70,14 +70,16 @@ while ballsPosition[j-1] < L:
         ballsPosition = ballsPosition[:-1]
         ballsDirection = ballsDirection[:-1]
         potentialDistancesList = potentialDistancesList[:-1]
-    elif ballsDirection[-1] == "e" and len(ballsDirection) != j:
+        N += -1
+    elif ballsDirection[-1] == "e" and N != j:
         ballsPosition = ballsPosition[:-1]
         ballsDirection = ballsDirection[:-1]
         potentialDistancesList = potentialDistancesList[:-1]
+        N += -1
 
     minimumPotentialDistance = min(potentialDistancesList)
     trackedDistance += minimumPotentialDistance
-    for m in range(len(ballsDirection)):
+    for m in range(N):
         if ballsDirection[m] == "e":
             ballsPosition[m] += minimumPotentialDistance
         else:
@@ -87,11 +89,12 @@ while ballsPosition[j-1] < L:
             ballsDirection[m] = swap(ballsDirection[m])
 
         potentialDistancesList[m] += -minimumPotentialDistance
-    for k in range(len(ballsPosition)):
+
+    for k in range(N):
         if potentialDistancesList[k] == float(0):
             ballsPosition,ballsDirection,potentialDistance = calculatePotentialDistance(ballsPosition,ballsDirection,k)
             potentialDistancesList[k] = potentialDistance
-            if k != len(ballsPosition)-1 and ballsDirection[k] == "e" and ballsDirection[k+1] == "w":
+            if k != N-1 and ballsDirection[k] == "e" and ballsDirection[k+1] == "w":
                 ballsPosition,ballsDirection,potentialDistance = calculatePotentialDistance(ballsPosition,ballsDirection,k+1)
                 potentialDistancesList[k+1] = potentialDistance
             elif k != 0 and ballsDirection[k] == "w" and ballsDirection[k-1] == "e":
