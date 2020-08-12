@@ -21,9 +21,9 @@ d = 20 #millimeters
 #constant velocity
 
 
-L = float(5000) #length of tube millimeters of course
-N = 3 #number of balls
-j = 2 #ball we wnat to track
+L = float(100000) #length of tube millimeters of course
+N = 101 #number of balls
+j = 51 #ball we wnat to track
 
 trackedDistance = 0
 
@@ -42,12 +42,7 @@ for d in range(N):
     else:
         ballsDirection.append("w") # 0 is west
 
-count = 0
 while ballsPosition[j-1] < L:
-    print(ballsPosition)
-    if count%10 == 0:
-        print(ballsPosition[j-1],len(ballsPosition))
-    count += 1
     if ballsPosition[-1] >= L: # if a ball has fallen out of the tube we delete it
         ballsPosition = ballsPosition[:-1]
         ballsDirection = ballsDirection[:-1]

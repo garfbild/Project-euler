@@ -39,9 +39,9 @@ d = 20 #millimeters
 #constant velocity
 
 
-L = float(5000) #length of tube millimeters of course
-N = 3 #number of balls
-j = 2 #ball we wnat to track
+L = float(100000) #length of tube millimeters of course
+N = 101 #number of balls
+j = 51 #ball we want to track
 
 trackedDistance = 0
 
@@ -64,37 +64,40 @@ potentialDistancesList = []
 for e in range(len(ballsDirection)):
     ballsPosition,ballsDirection,potentialDistance = calculatePotentialDistance(ballsPosition,ballsDirection,e)
     potentialDistancesList.append(potentialDistance)
-print(potentialDistancesList)
 
 while ballsPosition[j-1] < L:
     if ballsPosition[-1] >= L: # if a ball has fallen out of the tube we delete it
         ballsPosition = ballsPosition[:-1]
         ballsDirection = ballsDirection[:-1]
+        potentialDistancesList = potentialDistancesList[:-1]
+    elif ballsDirection[-1] == "e" and len(ballsDirection) != j:
+        ballsPosition = ballsPosition[:-1]
+        ballsDirection = ballsDirection[:-1]
+        potentialDistancesList = potentialDistancesList[:-1]
 
     minimumPotentialDistance = min(potentialDistancesList)
     trackedDistance += minimumPotentialDistance
-
     for m in range(len(ballsDirection)):
         if ballsDirection[m] == "e":
             ballsPosition[m] += minimumPotentialDistance
         else:
             ballsPosition[m] += -minimumPotentialDistance
 
-        if potentialDistancesList[m] == minimumPotentialDistance and ballsPosition[m] != L:
+        if potentialDistancesList[m] == minimumPotentialDistance:
             ballsDirection[m] = swap(ballsDirection[m])
 
         potentialDistancesList[m] += -minimumPotentialDistance
-    print(potentialDistancesList)
     for k in range(len(ballsPosition)):
         if potentialDistancesList[k] == float(0):
             ballsPosition,ballsDirection,potentialDistance = calculatePotentialDistance(ballsPosition,ballsDirection,k)
             potentialDistancesList[k] = potentialDistance
-    print(potentialDistancesList)
-    print(ballsPosition,ballsDirection)
-    print()
+            if k != len(ballsPosition)-1 and ballsDirection[k] == "e" and ballsDirection[k+1] == "w":
+                ballsPosition,ballsDirection,potentialDistance = calculatePotentialDistance(ballsPosition,ballsDirection,k+1)
+                potentialDistancesList[k+1] = potentialDistance
+            elif k != 0 and ballsDirection[k] == "w" and ballsDirection[k-1] == "e":
+                ballsPosition,ballsDirection,potentialDistance = calculatePotentialDistance(ballsPosition,ballsDirection,k-1)
+                potentialDistancesList[k-1] = potentialDistance
 
 
 
-
-
-#print(trackedDistance)
+print(trackedDistance)
