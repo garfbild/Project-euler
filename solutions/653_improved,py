@@ -16,6 +16,24 @@ def swap(direction):
         return "e"
     return "fuck"
 
+def calculatePotentialDistance(ballsPosition,ballsDirection,n):
+    if ballsDirection[n] == "e":
+        if n == len(ballsDirection)-1 or ballsPosition[n+1] == L:
+            potentialDistance = L - ballsPosition[n]
+        elif ballsDirection[n+1] == "w":
+            potentialDistance = abs(ballsPosition[n]-ballsPosition[n+1])/2 - 10
+        else:
+            potentialDistance = L*2
+
+    if ballsDirection[n] == "w":
+        if n == 0:
+            potentialDistance = ballsPosition[0] - 10
+        elif ballsDirection[n-1] == "e":
+            potentialDistance = abs(ballsPosition[n]-ballsPosition[n-1])/2 - 10
+        else:
+            potentialDistance = L*2
+    return ballsPosition,ballsDirection,potentialDistance
+
 d = 20 #millimeters
 #collisions are elastic
 #constant velocity
@@ -42,34 +60,16 @@ for d in range(N):
     else:
         ballsDirection.append("w") # 0 is west
 
-count = 0
+potentialDistancesList = []
+for e in range(len(ballsDirection)):
+    ballsPosition,ballsDirection,potentialDistance = calculatePotentialDistance(ballsPosition,ballsDirection,e)
+    potentialDistancesList.append(potentialDistance)
+print(potentialDistancesList)
+
 while ballsPosition[j-1] < L:
-    print(ballsPosition)
-    if count%10 == 0:
-        print(ballsPosition[j-1],len(ballsPosition))
-    count += 1
     if ballsPosition[-1] >= L: # if a ball has fallen out of the tube we delete it
         ballsPosition = ballsPosition[:-1]
         ballsDirection = ballsDirection[:-1]
-    potentialDistancesList = []
-    for n in range(len(ballsDirection)):
-        if ballsDirection[n] == "e":
-            if n == len(ballsDirection)-1 or ballsPosition[n+1] == L:
-                potentialDistance = L - ballsPosition[n]
-            elif ballsDirection[n+1] == "w":
-                potentialDistance = abs(ballsPosition[n]-ballsPosition[n+1])/2 - 10
-            else:
-                potentialDistance = L*2
-
-        if ballsDirection[n] == "w":
-            if n == 0:
-                potentialDistance = ballsPosition[0] - 10
-            elif ballsDirection[n-1] == "e":
-                potentialDistance = abs(ballsPosition[n]-ballsPosition[n-1])/2 - 10
-            else:
-                potentialDistance = L*2
-
-        potentialDistancesList.append(potentialDistance)
 
     minimumPotentialDistance = min(potentialDistancesList)
     trackedDistance += minimumPotentialDistance
@@ -80,8 +80,21 @@ while ballsPosition[j-1] < L:
         else:
             ballsPosition[m] += -minimumPotentialDistance
 
-        if potentialDistancesList[m] == minimumPotentialDistance and ballsPosition[n] != L:
+        if potentialDistancesList[m] == minimumPotentialDistance and ballsPosition[m] != L:
             ballsDirection[m] = swap(ballsDirection[m])
 
+        potentialDistancesList[m] += -minimumPotentialDistance
+    print(potentialDistancesList)
+    for k in range(len(ballsPosition)):
+        if potentialDistancesList[k] == float(0):
+            ballsPosition,ballsDirection,potentialDistance = calculatePotentialDistance(ballsPosition,ballsDirection,k)
+            potentialDistancesList[k] = potentialDistance
+    print(potentialDistancesList)
+    print(ballsPosition,ballsDirection)
+    print()
 
-print(trackedDistance)
+
+
+
+
+#print(trackedDistance)
