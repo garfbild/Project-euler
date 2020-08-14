@@ -14,10 +14,9 @@ def Statistics(a,b):
         s = 0
         for d in range(b):
             c = a**d
-            s += int((n - n%c)/c %4) + 1
-            DiceDigts[s] += 1
-            DiceDigitsFrequency.append(s)
-
+            s += int((n - n%c)/c %a) + 1
+        DiceDigts[s] += 1
+        DiceDigitsFrequency.append(s)
     SumDiceDigit = sum(DiceDigts)
     for j in range(len(DiceDigts)):
         if DiceDigts[j] != 0:
@@ -30,11 +29,17 @@ def Statistics(a,b):
 FourLabels,FourProbability = Statistics(4,9)
 SixLabels,SixProbability = Statistics(6,6)
 
-fig, ax = plt.subplots()
-barwidth = 0.35
-tempLabels = list(map(add,SixLabels ,([barwidth]*len(SixLabels))))
+# fig, ax = plt.subplots()
+# barwidth = 0.35
+# tempLabels = list(map(add,SixLabels ,([barwidth]*len(SixLabels))))
 
-plt.bar(FourLabels,FourProbability, width = barwidth)
-plt.bar(tempLabels,SixProbability, width = barwidth)
+# plt.bar(FourLabels,FourProbability, width = barwidth)
+# plt.bar(tempLabels,SixProbability, width = barwidth)
+#
+# plt.show()
 
-plt.show()
+total = 0
+for c in range(len(SixProbability)):
+    total += SixProbability[c]*sum(FourProbability[c+1:])
+
+print(total)
