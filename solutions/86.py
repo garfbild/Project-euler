@@ -1,9 +1,6 @@
-import time
-
 global primes
-global seive
 primes = [2]
-sieve = []
+
 
 def Sieve(n):
     global primes
@@ -18,15 +15,21 @@ def Sieve(n):
 #lengths a,b,c a>b>c
 
 s = 0
-M = 1
+M = 0
+target = 10000
 while s < 1000000:
+    M += 1
+    while Sieve(M):
+        M += 1
+    if s> target:
+        print(target/10000,M,s)
+        target += 10000
+
     for b in range(1,M+1):
         for a in range(1,b+1):
             if (((a+b)**2 + M**2)**0.5).is_integer():
                 s += 1
 
-    M += 1
-    while Sieve(M):
-        M += 1
 
-print(s)
+
+print(M,s)
