@@ -11,25 +11,17 @@ def Sieve(n):
     primes.append(n)
     return True
 
-
-#lengths a,b,c a>b>c
-
 s = 0
 M = 0
-target = 10000
-while s < 1000000:
+while s < 100:
     M += 1
     while Sieve(M):
         M += 1
-    if s> target:
-        print(target/10000,M,s)
-        target += 10000
 
     for b in range(1,M+1):
         for a in range(1,b+1):
+            print(a+b)
             if (((a+b)**2 + M**2)**0.5).is_integer():
                 s += 1
-
-
 
 print(M,s)
