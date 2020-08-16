@@ -1,6 +1,6 @@
+# https://oeis.org/search?q=2%2C3%2C3%2C6%2C6%2C10%2C14&language=english&go=Search
 global primes
 primes = [2]
-
 
 def Sieve(n):
     global primes
