@@ -24,12 +24,12 @@ fn1 = 1
 modulo = 10**9
 k = 2
 while True:
-    fn2 = (fn1 + fn0) % modulo
+    fn2 = (fn1 + fn0) % modulo #we search for all fibonacci numbers where the last 9 are pandigital
     fn0 = fn1
     fn1 = fn2
     k += 1
     if isPandigital(str(fn1)) == True:
         print(k,fn1)
-        if isPandigital(str(f(k))[0:9]) == True:
+        if isPandigital(str(f(k))[0:9]) == True: # we use the closed form expression of the fibonacci sequence to compute the first 9 digits (not sure how accurate).
             break
-#print(k,fn1)
+print(k,fn1)

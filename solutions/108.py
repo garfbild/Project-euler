@@ -36,6 +36,7 @@ def tau(n):
     return(a)
 
 n = 1
-while int((divisor_count(n**2)+1)/2) < 1000:
+while int((divisor_count(n**2)+1)/2) < 10:
+    print(n,)
     n += 1
 print(n)
