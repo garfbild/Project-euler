@@ -1,11 +1,11 @@
-#1/x + 1/y = 1/n
-#x+y * n = xy
-#not finished
-from decimal import *
-from time import *
+#solutions to 1/x + 1/y = 1/n
+# X= x-n Y = y-n solving number of solutions X*Y = n**2
+# divisors of n**2
+#https://oeis.org/A048691
+from sympy import divisor_count
 
 def Sieve(n):
-    sieve = [0 for i in range(n+1)]
+    sieve = [0] * (n+1)
     for d in range(2,int(n**0.5)+1):
         if sieve[d] == 0:
             s = d
@@ -19,32 +19,23 @@ def Sieve(n):
             primes.append(i)
     return primes[2:]
 
-def primeFactors(n):
-    t = time()
+def tau(n):
     primes = Sieve(n)
-    dict = {}
+    exponents =[]
     for p in primes:
-        dict[p] = 0
-        temp = n
-        while temp > 0 and temp%p == 0:
-            dict[p] += 1
-            temp = temp / p
-    return dict
+        num = n
+        temp = 0
+        while num%p == 0:
+            temp += 1
+            num = num/p
+        exponents.append(temp)
 
-def intelligent(n):
-    product = 1
-    for i in primeFactors(n).values():
-        product = product * (2*i + 1)
-    return product
+    a = 1
+    for e in exponents:
+        a = a*(e+1)
+    return(a)
 
-def dumb(n):
-    total = 0
-    for a in range(1,20*n):
-        for b in range(1,n*20):
-            if 1/a + 1/b == 1/n:
-                total += 1
-    return total
-
-for n in range(1,10):
-    print(intelligent(n),dumb(n))
-    print()
+n = 1
+while int((divisor_count(n**2)+1)/2) < 1000:
+    n += 1
+print(n)
