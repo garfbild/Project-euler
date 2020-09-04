@@ -1,12 +1,11 @@
 def check(n,primes):
     digits = len(str(n))
-    for i in range(1,digits+1):
-        if n%10**i not in primes:
-            return False
     for j in range(digits-1,-1,-1):
         if n//10**j not in primes:
             return False
-
+    for i in range(1,digits+1):
+        if n%10**i not in primes:
+            return False
     return True
 
 def Sieve(n):
@@ -24,14 +23,27 @@ def Sieve(n):
             primes.append(i)
     return primes[2:]
 
-primes = Sieve(10**7)
+primes = Sieve(10**8)
 s = 0
 count = 0
 for n in primes[4:]:
+    print(n)
     if check(n,primes):
         s += n
         count += 1
-        print(n)
     if count == 11:
         break
+
 print(s)
+# from sympy import primerange
+#
+# p = lambda x: list(primerange(x, x+10))
+# A024770 = p(0)
+# i=0
+#
+# while i<len(A024770):
+#     print(A024770)
+#     A024770+=p(A024770[i]*10)
+#     i+=1
+#
+# print(A024770)
