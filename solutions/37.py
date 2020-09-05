@@ -24,26 +24,13 @@ def Sieve(n):
     return primes[2:]
 
 primes = Sieve(10**8)
-s = 0
-count = 0
-for n in primes[4:]:
-    print(n)
-    if check(n,primes):
-        s += n
-        count += 1
-    if count == 11:
-        break
 
-print(s)
-# from sympy import primerange
-#
-# p = lambda x: list(primerange(x, x+10))
-# A024770 = p(0)
-# i=0
-#
-# while i<len(A024770):
-#     print(A024770)
-#     A024770+=p(A024770[i]*10)
-#     i+=1
-#
-# print(A024770)
+rightTruncatable = primes[:4]
+i = 0
+while i < len(rightTruncatable):
+    for n in range(1,10,2):
+        if rightTruncatable[i]*10 + n in primes:
+            rightTruncatable.append(rightTruncatable[i]*10 + n)
+    i+=1
+
+print(rightTruncatable)

@@ -1,4 +1,6 @@
-from sympy import primerange
+#https://oeis.org/A024770
+from sympy import primerange,nextprime,isprime
+import inspect
 
 p = lambda x: list(primerange(x, x+10))
 A024770 = p(0)
@@ -10,3 +12,6 @@ while i<len(A024770):
     i+=1
 
 print(A024770)
+print(inspect.getsource(primerange))
+print(inspect.getsource(nextprime))
+print(inspect.getsource(isprime))
