@@ -1,16 +1,26 @@
 def check(d):
-    for n in range(1,4):
-        cm = d//10**(9-n)
-        for j in range(3):
-            r = 2
-            ln = n
-            while r*cm == d//10**(9-(r*n)-j)%10**(n+j) and ln < 9:
-                print(d//10**(9-(r*n)-j)%10**(n+j))
-                ln += n+j
-                r += 1
+    strd = str(d)
+    n = 1
+    r = 2
+    while n <= int(len(str(d))/2):
+        cm = int(strd[0:n])
+        ln = n
+        bool = True
+        while bool == True and ln < 9:
+            bool = False
+            for j in range(2):
+                print(cm,j,int(strd[ln:ln + n + j]))
+                if r*cm == int(strd[ln:ln + n + j]):
+                    r += 1
+                    ln += n+j
+                    bool = True
+                    break
+        if ln == 9:
+            return cm
 
-            if ln == 9:
-                return cm,[i for i in range(1,r)]
+
+        n += 1
+
 
 
 
