@@ -1,8 +1,5 @@
 def check(n,primes):
     digits = len(str(n))
-    for j in range(digits-1,-1,-1):
-        if n//10**j not in primes:
-            return False
     for i in range(1,digits+1):
         if n%10**i not in primes:
             return False
@@ -34,3 +31,9 @@ while i < len(rightTruncatable):
     i+=1
 
 print(rightTruncatable)
+bothLeftRightTruncatable = []
+for j in range(4,len(rightTruncatable)):
+    if check(rightTruncatable[j],primes):
+        bothLeftRightTruncatable.append(rightTruncatable[j])
+
+print(bothLeftRightTruncatable,sum(bothLeftRightTruncatable))
