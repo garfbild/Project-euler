@@ -8,23 +8,19 @@ def check(d):
         bool = True
         while bool == True and ln < 9:
             bool = False
-            for j in range(2):
-                print(cm,j,int(strd[ln:ln + n + j]))
+            for j in range(3):
                 if r*cm == int(strd[ln:ln + n + j]):
                     r += 1
                     ln += n+j
                     bool = True
                     break
         if ln == 9:
-            return cm
-
-
+            return True
         n += 1
-
-
+    return False
 
 
 first = 987654321
 test = 192384576
 test2 = 918273645
-print(check(test2))
+print(check(first))
