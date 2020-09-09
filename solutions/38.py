@@ -65,8 +65,22 @@ def prevLexicographicPermutation(a):
 
     return a[:k_copy+1] + a[k_copy+1:][::-1]
 
-first = 987654321
+def Integerise(a):
+    i = 0
+    n = len(a)
+    for x in range(n):
+        i += a[x]*10**(n-x-1)
+    return i
+
 test = 192384576
 test2 = 918273645
-print(list(first))
-print(prevLexicographicPermutation([1,2,4,3]))
+
+number = [9,8,7,6,5,4,3,2,1]
+
+bool = True
+
+while bool:
+    number = prevLexicographicPermutation(number)
+    if check(Integerise(number)):
+        bool = False
+print(number)
