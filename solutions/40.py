@@ -17,9 +17,13 @@ def dumb(n):
         d += 1
     return string[n-1]
 
-p = 1
-for i in range(1,7):
-    print(int(dumb(10**i)))
-    p = p*int(dumb(10**i))
-    print(10**i)
-print(p)
+# p = 1
+# for i in range(1,7):
+#     print(int(dumb(10**i)))
+#     p = p*int(dumb(10**i))
+#     print(10**i)
+# print(p)
+
+for n in range(12,1000):
+    if dumb(n+1) != digit(n):
+        print(n)
