@@ -30,7 +30,7 @@ def extEuclid(a,b):
         r0,s0,t0 = temp[0],temp[1],temp[2]
     return r0,s0,t0
 
-
+print(extEuclid(13439,8633))
 primes = Sieve(1000003)
 print(len(primes))
 S = 0
