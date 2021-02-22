@@ -34,7 +34,8 @@ def extEuclid(a,b):
 
     return r0,s0,t0
 
-#extEuclid(8633,13439)
+print(extEuclid(44,105))
+
 
 primes = Sieve(1000003)
 print(len(primes))
