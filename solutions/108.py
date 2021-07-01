@@ -35,6 +35,7 @@ def tau(n):
         a = a*(e+1)
     return(a)
 
+print(tau(4294967297))
 n = 1
 while int((divisor_count(n**2)+1)/2) < 1000:
     n += 1

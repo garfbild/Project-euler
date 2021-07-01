@@ -1,4 +1,5 @@
 import copy
+import time
 def Sieve(n):
     sieve = [0] * (n+1)
     for d in range(2,int(n**0.5)):
@@ -23,11 +24,14 @@ def extEuclid(a,b):
     r1,s1,t1 = b,0,1
     while r1 != 0:
         q = int(r0/r1)
+        #print(q," ",r0,s0,t0," ",r1,s1,t1)
         temp = [copy.deepcopy(r1),copy.deepcopy(s1),copy.deepcopy(t1)]
         r1 = r0 - q*r1
         s1 = s0 - q*s1
         t1 = t0 - q*t1
+        #print(r1,s1,t1)
         r0,s0,t0 = temp[0],temp[1],temp[2]
+
     return r0,s0,t0
 
 print(extEuclid(13439,8633))
