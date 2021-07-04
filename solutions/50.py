@@ -22,13 +22,19 @@ def isPrime(n):
     return True
 
 primes = Sieve(1000000)
-print(primes[0:10])
 s = 0
 i = 0
-while s+primes[i] < 1000:
+while s+primes[i] < 1000000:
     if isPrime(s):
         print(s)
     s += primes[i]
     i += 1
-print(i)
+
 print(s)
+print(i,primes[i])
+#print(primes)
+
+for i in range(len(primes)):
+    s += -primes[i]
+    if isPrime(s):
+        print(s)
