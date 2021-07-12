@@ -13,11 +13,19 @@ for i in strlist:
     uniformbin = "0"*(8-len(shortbin))+shortbin
     binlist = binlist+[uniformbin]
 
-for a in range(97,123):
-    for b in range(97,123):
-        for c in range(97,123):
-            plaintext = []
-            key = ["0"*(8-len(bin(a)[2:]))+bin(a)[2:],"0"*(8-len(bin(b)[2:]))+bin(b)[2:],"0"*(8-len(bin(c)[2:]))+bin(c)[2:]]
-            for j in range(len(binlist)):
-                plaintext = plaintext+[chr(int(XOR(key[j%3],binlist[j]),2))]
-            print(plaintext)
+print(strlist)
+splitLists = [[],[],[]]
+for j in range(len(strlist)):
+    splitLists[j%3].append(strlist[j])
+print(splitLists)
+
+
+
+# for a in range(97,123):
+#     for b in range(97,123):
+#         for c in range(97,123):
+#             plaintext = []
+#             key = ["0"*(8-len(bin(a)[2:]))+bin(a)[2:],"0"*(8-len(bin(b)[2:]))+bin(b)[2:],"0"*(8-len(bin(c)[2:]))+bin(c)[2:]]
+#             for j in range(len(binlist)):
+#                 plaintext = plaintext+[chr(int(XOR(key[j%3],binlist[j]),2))]
+#             print(plaintext)
