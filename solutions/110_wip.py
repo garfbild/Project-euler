@@ -1,7 +1,6 @@
 from functools import reduce
 from sympy import divisor_count
 
-
 def Sieve(n):
     sieve = [0] * (n+1)
     for d in range(2,int(n**0.5)+1):
