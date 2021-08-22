@@ -52,6 +52,8 @@ print(maxFreqList)
 candidateKey = []
 inputs = [1,1,1]
 #just trialed and errored until I got it. making changes that made the text more english like
+#turns out most xommon character was SPACE and 2nd popular was e which I hadnt considered until I had found the key
+# Freq = e + k => Freq + E = k (XOR ALGEBRA) then k+ cyphertext = plaintext
 for p in range(3):
     plain = ord("e")
     cipher = int(maxKeyList[p][inputs[p]])
