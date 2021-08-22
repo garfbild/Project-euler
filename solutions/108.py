@@ -3,6 +3,8 @@
 # divisors of n**2
 #https://oeis.org/A048691
 from sympy import divisor_count
+import random
+import time
 
 def Sieve(n):
     sieve = [0] * (n+1)
@@ -35,8 +37,21 @@ def tau(n):
         a = a*(e+1)
     return(a)
 
-print(tau(4294967297))
-n = 1
-while int((divisor_count(n**2)+1)/2) < 1000:
-    n += 1
-print(n)
+# for i in range(8):
+#     x = random.randint(10**i, 10**(i+1))
+#     start = time.time()
+#     tau(x)
+#     end = time.time()
+#     print(start-end,end = ' ')
+#     start = time.time()
+#     divisor_count(x)
+#     end = time.time()
+#     print(start-end)
+
+
+# n = Mul(*[i for i in range(5)])
+# print(n)
+
+# while int((divisor_count(n**2)+1)/2) < 1000:
+#     n += 1
+# print(n)
