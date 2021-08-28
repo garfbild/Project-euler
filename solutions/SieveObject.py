@@ -1,12 +1,3 @@
-#solutions to 1/x + 1/y = 1/n
-# X= x-n Y = y-n solving number of solutions X*Y = n**2
-# divisors of n**2
-#https://oeis.org/A048691
-from sympy import divisor_count
-import random
-import time
-global SieveObj
-
 class Sieve:
     def __init__(self,n):
         self._n = n
@@ -52,53 +43,12 @@ class Sieve:
         return self._Primes
 
 
-def tau(n):
-    global SieveObj
-    primes = SieveObj.getPrimes(n)
-    exponents =[]
-    primeCount = []
-    for p in primes:
-        num = n
-        temp = 0
-        while num%p == 0:
-            primeCount.append(p)
-            temp += 1
-            num = num/p
-        exponents.append(temp)
-    a = 1
-    print(exponents)
-    print(primeCount)
-    for e in exponents:
-        a = a*(e+1)
-    return a
-
-# for i in range(8):
-#     x = random.randint(10**i, 10**(i+1))
-#     start = time.time()
-#     tau(x)
-#     end = time.time()
-#     print(start-end,end = ' ')
-#     start = time.time()
-#     divisor_count(x)
-#     end = time.time()
-#     print(start-end)
+# import time
+# t = time.time()
+# NewSieve = Sieve(10000000)
+# print(time.time() - t)
 #
-#
-# n = Mul(*[i for i in range(5)])
-# print(n)
-
-SieveObj = Sieve(10000)
-# n = 1
-# print((tau(1260**2)+1)/2)
-# while int((tau(n**2)+1)/2) < 1000:
-#     n += 1
-# print(n)
-
-# n = 1
-# while int((divisor_count(n**2)+1)/2) < 1000:
-#     n += 1
-# print(n)
-#180180
-primes = SieveObj.getPrimes(10000)
-print(primes)
-print((divisor_count(180180**2)+1)/2)
+# t = time.time()
+# NewSieve = Sieve(5000000)
+# NewSieve.getPrimes(10000000)
+# print(time.time() - t)
