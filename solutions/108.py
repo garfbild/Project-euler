@@ -115,9 +115,10 @@ def Search(depth,primes,exponents):
     global m
     e = copy.deepcopy(exponents)
     s = Product(primes,e)
-    if int((divisor_count(s**2)+1)/2) >= 4000000:
+    if int((divisor_count(s**2)+1)/2) >= 1000:
         if s < m:
             m = s
+            print(e)
         return
     for i in range(1,e[depth-1]+1):
         e[depth] = i

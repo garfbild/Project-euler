@@ -63,6 +63,7 @@ def Search(depth,primes,exponents):
     if int((divisor_count(s**2)+1)/2) >= 4000000:
         if s < m:
             m = s
+            print(m,e)
         return
     for i in range(1,e[depth-1]+1):
         e[depth] = i
