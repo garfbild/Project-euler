@@ -10,7 +10,6 @@ for i in range(len(List)):
         delNames.append(List[i])
 List = [List[i] for i, j in enumerate(List) if i not in delList]
 print(List)
-dict = {}
-for i in range(10):
-    dict[str(i)] = []
-print(dict)
+start = List[0]
+for j in range(len(List)-1):
+    
