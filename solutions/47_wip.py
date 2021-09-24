@@ -40,18 +40,3 @@ def checkDistinct(a,b):
 
 n = 10000
 primes = Sieve(n)
-consolidation = []
-
-for i in range(1,n):
-    a = primeFactors(i,primes)
-    if a[0] == 4:
-        #print(i)
-        b = primeFactors(i+1,primes)
-        if b[0] == 4:
-            print(i,i+1)
-            c = primeFactors(i+2,primes)
-            if c[0] == 4:
-                print(i,i+1,i+2)
-                d = primeFactors(i+3,primes)
-                if d[0] == 4:
-                    print(i,a,b,c)
