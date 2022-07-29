@@ -1,3 +1,4 @@
+#https://www.youtube.com/watch?v=3ls3z-UzOSw&ab_channel=BillyWoods-mathematics
 def checkSquare(n):
     if int(n**0.5)**2 == n:
         return True
@@ -14,14 +15,7 @@ contFrac = [0]
 a = 1
 while a**2 < D:
     a+=1
-contFrac[0] = a
-for i in range(10):
-    j = 1
-    contFrac.append(j)
-    while evalCont(contFrac)**2 < D:
-        j+=1
-        contFrac[-1] = j
-print(contFrac)
+r = D - a**2
 
 
 
