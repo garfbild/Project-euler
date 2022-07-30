@@ -18,10 +18,10 @@ def MaxSquare(n):
 def rContFrac(a):
     n = len(a)
     p0,q0 = a[0],1
-    p1,q1 = a[1]*a[0]+1,a[1]
     if n == 1:
         return p0,q0
-    elif n == 2:
+    p1,q1 = a[1]*a[0]+1,a[1]
+    if n == 2:
         return p1,q1
     else:
         for i in range(2,n):
@@ -35,36 +35,25 @@ def rContFrac(a):
 D = 61
 d = D**0.5
 
-a = MaxSquare(D)
-r = (d+a)/(D-a**2)
-contFrac = [a]
-x,y =0,0
-for i in range(100):
-    integer = int(r)
-    contFrac.append(integer)
-    r = 1/(r-integer)
-    x,y = rContFrac(contFrac)
-    print(contFrac,x,y)
-#
-# xMax = 0
-# DMax = 0
-# for D in range(2,1000):
-#     if not checkSquare(D):
-#         print(D)
-#         d = D**0.5
-#
-#         a = MaxSquare(D)
-#         r = (d+a)/(D-a**2)
-#         contFrac = [a]
-#         x,y =0,0
-#         while x**2 - D*y**2 != 1:
-#             integer = int(r)
-#             contFrac.append(integer)
-#             r = 1/(r-integer)
-#             x,y = rContFrac(contFrac)
-#         print(x,y)
-#         if x > xMax:
-#             xMax = x
-#             DMax = D
-#         print()
-# print(xMax,DMax)
+
+xMax = 0
+DMax = 0
+for D in range(2,1000):
+    if not checkSquare(D):
+        print(D)
+        d = D**0.5
+        x,y = 0,0
+        m0 = 0
+        n0 = 1
+        contFrac = []
+        while x**2-D*y**2 != 1:
+            a = int((d+m0)/n0)
+            contFrac.append(a)
+            m1 = -(m0-n0*a)
+            n1 = (D - (m0-n0*a)**2)/n0
+            m0,n0 = m1,n1
+            x,y = rContFrac(contFrac)
+        if x > xMax:
+            xMax = x
+            DMax = D
+print(xMax,DMax)
