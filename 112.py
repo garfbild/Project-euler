@@ -2,11 +2,13 @@ def bouncyCheck(n):
     p = len(str(n))
     inc = True
     dec = True
-    for i in range(p-1):
+    i = 0
+    while i < p-1 and (inc == True or dec == True):
         if n//(10**(p-i-1))%10 < n//(10**(p-i-2))%10:
             dec = False
         elif n//(10**(p-i-1))%10 > n//(10**(p-i-2))%10:
             inc = False
+        i+=1
     if inc == False and dec == False:
         return True
     else:
