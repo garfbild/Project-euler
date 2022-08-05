@@ -1,4 +1,3 @@
-import random
 import time
 
 def adjacents(pos):

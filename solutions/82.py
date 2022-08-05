@@ -1,4 +1,3 @@
-import random
 import copy
 
 file = open("solutions/matrix.txt","r")
