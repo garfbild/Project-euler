@@ -9,3 +9,5 @@ for k in range(len(numberList)):
 
 print(numberList[index(0,1)])
 #I spotted the solution. lol
+# 4 up and along from bottom left, 87,97,94,89
+#three for loops are all that required

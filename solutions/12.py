@@ -1,3 +1,4 @@
+#quite slow implementation
 def tN(n):
     return int(n*(n+1)/2)
 
@@ -14,6 +15,4 @@ while numFactors < 500:
     j+=1
     t = tN(j)
     numFactors = Factors(t)
-    if numFactors%100 == 0:
-        print(j,numFactors)
-print(j)
+print(j,Factors(t))

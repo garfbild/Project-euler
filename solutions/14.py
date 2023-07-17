@@ -1,5 +1,5 @@
 dict = {}
-def collatz(n):
+def collatz(n,dict):
     count = 1
     while n != 1:
         if n%2 == 0:
@@ -13,12 +13,12 @@ def collatz(n):
                 count += dict[str(n)]
                 break
         count +=1
-    return(count)
+    return count
 
 max = 0
 for i in range(1,1000000):
-    n = collatz(i)
-    dict[i] = n
+    n = collatz(i,dict)
+    dict[str(i)] = n
     if n > max:
         max = n
         print(i,max)
