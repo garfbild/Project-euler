@@ -1,8 +1,25 @@
 import math
 import numpy as np
-
-def norm(x):
-    return (x[0]**2 + x[1]**2)**0.5
+#if we think of each edge as an inequality where the remaining point tells us which
+#way the inequality "points" we check all three
+def checkLine(Q,W,E):
+    a,b = Q[0],Q[1]
+    c,d = W[0],W[1]
+    x,y = E[0],E[1]
+    #xF*x +yF*y = C equation of a line
+    xF = b-d
+    yF = c-a
+    C = b*c-a*d
+    if xF*x + yF*y > C:
+        if 0 > C:
+            return True
+        else:
+            return False
+    else:
+        if 0 < C:
+            return True
+        else:
+            return False
 
 file = open("solutions/triangles.txt","r")
 List = file.read().split('\n')
@@ -12,25 +29,13 @@ count = 0
 for i in range(len(List)):
     t = List[i]
     print(t)
-    a = [int(t[0]),int(t[1])]
-    b = [int(t[2]),int(t[3])]
-    c = [int(t[4]),int(t[5])]
+    A = [int(t[0]),int(t[1])]
+    B = [int(t[2]),int(t[3])]
+    C = [int(t[4]),int(t[5])]
+    if checkLine(A,B,C):
+        if checkLine(C,A,B):
+            if checkLine(B,C,A):
+                print("yes")
+                count += 1
 
-
-    s = 0
-    adotb = a[0]*b[0] + a[1]*b[1]
-    cosTheta = adotb/(norm(a)*norm(b))
-    Theta = math.acos(cosTheta)
-    s += Theta
-    adotc = a[0]*c[0] + a[1]*c[1]
-    cosTheta = adotc/(norm(a)*norm(c))
-    Theta = math.acos(cosTheta)
-    s += Theta
-    bdotc = b[0]*c[0] + b[1]*c[1]
-    cosTheta = bdotc/(norm(b)*norm(c))
-    Theta = math.acos(cosTheta)
-    s += Theta
-
-    if s/2 == math.pi:
-        count += 1
 print(count)
