@@ -1,9 +1,25 @@
 from math import comb
 def Red(n):
+    tally = 0
     for i in range(1,(n//2)+1):
-        comb(n-i,i)
-        print(n-i,i,comb(n-i,i))
+        tally += comb(n-i,i)
+    return tally
 
-Red(4)
-Red(6)
-Red(7)
+def Green(n):
+    tally = 0
+    for i in range(1,(n//3)+1):
+        tally += comb(n-2*i,i)
+    return tally
+
+def Blue(n):
+    tally = 0
+    for i in range(1,(n//4)+1):
+        tally += comb(n-3*i,i)
+    return tally
+
+
+i = 50
+print(i,Red(i))
+print(i,Green(i))
+print(i,Blue(i))
+print(Red(i)+Green(i)+Blue(i))
